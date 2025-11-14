@@ -27,7 +27,7 @@ public:
     virtual void execute() = 0;
 };
 
-// --- 线程池类 (保持不变) ---
+// --- 线程池类  ---
 class ThreadPool {
 public:
     ThreadPool(size_t size);
@@ -49,7 +49,7 @@ private:
 
 // --- 服务器状态与业务逻辑函数 ---
 
-// 客户端信息，增加了读缓冲区
+// 客户端信息
 struct ClientInfo {
     std::string ip;
     int port;
@@ -409,8 +409,8 @@ int main() {
         
         code()
 	签名：const std::error_code& code() const noexcept;
-	作用：这个函数返回一个 std::error_code 对象。std::error_code 是对错误码和错误类别的轻量级封装。你可以把它看作是 std::system_error 的“非异常”版本。
-	用途：当你需要以编程方式检查具体的错误类型时，这个函数非常有用。
+	作用：这个函数返回一个 std::error_code 对象。std::error_code 是对错误码和错误类别的轻量级封装。可以把它看作是 std::system_error 的“非异常”版本。
+	用途：当需要以编程方式检查具体的错误类型时，这个函数非常有用。
 	std::error_code 的常用函数：
 	value(): 返回原始的整数错误码 (例如, 13)。
 	message(): 返回由错误类别翻译后的错误字符串 (例如, "Permission denied")。
@@ -421,6 +421,7 @@ int main() {
         std::cerr << "  - 错误值 (ec.value()): " << ec.value() << std::endl;
         std::cerr << "  - 错误消息 (ec.message()): " << ec.message() << std::endl;
         std::cerr << "  - 错误类别 (ec.category().name()): " << ec.category().name() << std::endl;*/
+		
     } catch (const std::exception& e) {
         std::cerr << "主函数中未捕获的异常: " << e.what() << std::endl;
     }
